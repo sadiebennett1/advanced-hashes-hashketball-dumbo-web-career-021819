@@ -15,6 +15,23 @@ def game_hash
           "Brendan Haywood" => {:number => 33, :shoe => 15, :points => 6, :rebounds => 12, :assists => 12, :steals => 22, :blocks => 5, :slam_dunks => 12}}}}
 end
 
+def player_by_number(num)
+  game_hash.each do |location, attribute|
+    attribute.each do |description, data|
+      if description == :players
+        data.each do |player, stats|
+          stats.each do |title, number|
+            if title == :number && number == num
+                return player
+            end
+          end
+        end
+      end
+    end
+  end
+end
+puts player_by_number(33)
+
 def num_points_scored(name)
   game_hash.each do |location, team_data|
     team_data.each do |attribute, data|
